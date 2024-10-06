@@ -72,4 +72,26 @@ public class UnitTests
 
     Assert.Equal(6, newItem.Quality);
   }
+
+  [Fact]
+  public void QualityIsNeverGreaterThan50()
+  {
+    // The `Quality` of an item is never more than `50`
+    var newItem = new Item
+    {
+      Name = "Aged Brie",
+      Quality = 50,
+      SellIn = 5
+    };
+    var items = new List<Item>
+    {
+      newItem
+    };
+
+    var gildedRose = new GildedRose(items);
+
+    gildedRose.UpdateQuality();
+
+    Assert.Equal(50, newItem.Quality);
+  }
 }
