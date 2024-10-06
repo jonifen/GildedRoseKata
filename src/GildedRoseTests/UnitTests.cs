@@ -50,4 +50,26 @@ public class UnitTests
 
     Assert.Equal(0, newItem.Quality);
   }
+
+  [Fact]
+  public void AgedBrieIncreaseInQualityTheOlderItGets()
+  {
+    // __"Aged Brie"__ actually increases in `Quality` the older it gets
+    var newItem = new Item
+    {
+      Name = "Aged Brie",
+      Quality = 5,
+      SellIn = 5
+    };
+    var items = new List<Item>
+    {
+      newItem
+    };
+
+    var gildedRose = new GildedRose(items);
+
+    gildedRose.UpdateQuality();
+
+    Assert.Equal(6, newItem.Quality);
+  }
 }
