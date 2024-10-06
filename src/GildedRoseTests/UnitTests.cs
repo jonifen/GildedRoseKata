@@ -116,4 +116,73 @@ public class UnitTests
 
     Assert.Equal(5, newItem.Quality);
   }
+
+  [Fact]
+  public void BackstagePassesIncreaseInQualityBy2_AsSellInValueIsEqualTo10()
+  {
+    // __"Backstage passes"__, like aged brie, increases in `Quality` as its `SellIn` value approaches;
+    // `Quality` increases by `2` when there are `10` days or less
+    var newItem = new Item
+    {
+      Name = "Backstage passes to a TAFKAL80ETC concert",
+      Quality = 5,
+      SellIn = 10
+    };
+    var items = new List<Item>
+    {
+      newItem
+    };
+
+    var gildedRose = new GildedRose(items);
+
+    gildedRose.UpdateQuality();
+
+    Assert.Equal(7, newItem.Quality);
+  }
+
+  [Fact]
+  public void BackstagePassesIncreaseInQualityBy3_AsSellInValueIsEqualTo5()
+  {
+    // __"Backstage passes"__, like aged brie, increases in `Quality` as its `SellIn` value approaches;
+    // [`Quality` increases] by `3` when there are `5` days or less
+    var newItem = new Item
+    {
+      Name = "Backstage passes to a TAFKAL80ETC concert",
+      Quality = 5,
+      SellIn = 5
+    };
+    var items = new List<Item>
+    {
+      newItem
+    };
+
+    var gildedRose = new GildedRose(items);
+
+    gildedRose.UpdateQuality();
+
+    Assert.Equal(8, newItem.Quality);
+  }
+
+  [Fact]
+  public void BackstagePassesQualityDropsToZero_WhenSellInValueIsZero()
+  {
+    // __"Backstage passes"__, like aged brie, increases in `Quality` as its `SellIn` value approaches;
+    // `Quality` drops to `0` after the concert
+    var newItem = new Item
+    {
+      Name = "Backstage passes to a TAFKAL80ETC concert",
+      Quality = 5,
+      SellIn = 0
+    };
+    var items = new List<Item>
+    {
+      newItem
+    };
+
+    var gildedRose = new GildedRose(items);
+
+    gildedRose.UpdateQuality();
+
+    Assert.Equal(0, newItem.Quality);
+  }
 }
