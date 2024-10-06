@@ -28,4 +28,26 @@ public class UnitTests
 
     Assert.Equal(3, newItem.Quality);
   }
+
+  [Fact]
+  public void TheQualityOfAnItemIsNeverNegative()
+  {
+    // The `Quality` of an item is never negative
+    var newItem = new Item
+    {
+      Name = "New item",
+      Quality = 0,
+      SellIn = 5
+    };
+    var items = new List<Item>
+    {
+      newItem
+    };
+
+    var gildedRose = new GildedRose(items);
+
+    gildedRose.UpdateQuality();
+
+    Assert.Equal(0, newItem.Quality);
+  }
 }
