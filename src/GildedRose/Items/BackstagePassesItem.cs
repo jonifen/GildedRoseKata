@@ -1,5 +1,3 @@
-using System;
-
 namespace GildedRoseKata.Items;
 
 public class BackstagePassesItem : IItem
