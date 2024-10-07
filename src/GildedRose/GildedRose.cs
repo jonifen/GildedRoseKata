@@ -22,24 +22,16 @@ namespace GildedRoseKata
                     continue;
                 }
 
+                if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+                {
+                    var backstagePassesItem = new BackstagePassesItem(Items[i]);
+                    backstagePassesItem.Update();
+                    continue;
+                }
+
                 if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert" && Items[i].Name != "Sulfuras, Hand of Ragnaros" && Items[i].Quality > 0)
                 {
                     Items[i].Quality = Items[i].Quality - 1;
-                }
-
-                if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert" && Items[i].Quality < 50)
-                {
-                    Items[i].Quality = Items[i].Quality + 1;
-                }
-
-                if (Items[i].Quality < 50 && Items[i].Name == "Backstage passes to a TAFKAL80ETC concert" && Items[i].SellIn < 11 && Items[i].Quality < 50)
-                {
-                    Items[i].Quality = Items[i].Quality + 1;
-                }
-
-                if (Items[i].Quality < 50 && Items[i].Name == "Backstage passes to a TAFKAL80ETC concert" && Items[i].SellIn < 6 && Items[i].Quality < 50)
-                {
-                    Items[i].Quality = Items[i].Quality + 1;
                 }
 
                 if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
@@ -50,11 +42,6 @@ namespace GildedRoseKata
                 if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert" && Items[i].Name != "Sulfuras, Hand of Ragnaros" && Items[i].Quality > 0 && Items[i].SellIn < 0)
                 {
                     Items[i].Quality = Items[i].Quality - 1;
-                }
-
-                if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert" && Items[i].SellIn < 0)
-                {
-                    Items[i].Quality = Items[i].Quality - Items[i].Quality;
                 }
             }
         }
