@@ -1,10 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using GildedRoseKata.Items;
 
 namespace GildedRoseKata
 {
     public class GildedRose
     {
+        private Dictionary<string, Func<Item, IItem>> _itemsToBeUpdated = new()
+        {
+            { "Aged Brie", (item) => new AgedBrieItem(item)},
+            { "Backstage passes to a TAFKAL80ETC concert", (item) => new BackstagePassesItem(item)},
+            { "Sulfuras, Hand of Ragnaros", (item) => new SulfurasItem(item)}
+        };
+
         IList<Item> Items;
         public GildedRose(IList<Item> Items)
         {
@@ -15,24 +24,11 @@ namespace GildedRoseKata
         {
             for (var i = 0; i < Items.Count; i++)
             {
-                if (Items[i].Name == "Aged Brie")
-                {
-                    var agedBrieItem = new AgedBrieItem(Items[i]);
-                    agedBrieItem.Update();
-                    continue;
-                }
+                var itemToBeUpdated = _itemsToBeUpdated.FirstOrDefault(iu => iu.Key == Items[i].Name);
 
-                if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+                if (itemToBeUpdated.Value != null)
                 {
-                    var backstagePassesItem = new BackstagePassesItem(Items[i]);
-                    backstagePassesItem.Update();
-                    continue;
-                }
-
-                if (Items[i].Name == "Sulfuras, Hand of Ragnaros")
-                {
-                    var sulfurasItem = new SulfurasItem(Items[i]);
-                    sulfurasItem.Update();
+                    itemToBeUpdated.Value(Items[i]).Update();
                     continue;
                 }
 
