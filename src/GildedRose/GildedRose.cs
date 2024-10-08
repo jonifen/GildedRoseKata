@@ -12,6 +12,7 @@ namespace GildedRoseKata
             { "Aged Brie", (item) => new AgedBrieItem(item)},
             { "Backstage passes to a TAFKAL80ETC concert", (item) => new BackstagePassesItem(item)},
             { "Sulfuras, Hand of Ragnaros", (item) => new SulfurasItem(item)},
+            { "Conjured", (item) => new ConjuredItem(item)},
             { "default", (item) => new DefaultItem(item)}
         };
 
