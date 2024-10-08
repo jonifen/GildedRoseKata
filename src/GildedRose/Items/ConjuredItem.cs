@@ -13,7 +13,7 @@ public class ConjuredItem : IItem
 
   public void Update()
   {
-    _item.Quality -= 2;
+    _item.Quality -= (_item.Quality > 1) ? 2 : _item.Quality;
     _item.SellIn -= 1;
   }
 }
