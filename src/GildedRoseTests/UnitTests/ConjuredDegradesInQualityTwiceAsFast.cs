@@ -8,7 +8,7 @@ public class ConjuredDegradesInQualityTwiceAsFast : WhenTestingGildedRose
   public void ShouldIncreaseAgedBrieQuality_AsItGetsOlder()
   {
     // __"Conjured"__ items degrade in `Quality` twice as fast as normal items
-    var newItem = AddItem("Conjured", 5, 5);
+    var newItem = AddItem("Conjured Mana Cake", 5, 5);
     Setup();
 
     GildedRose.UpdateQuality();
@@ -21,7 +21,7 @@ public class ConjuredDegradesInQualityTwiceAsFast : WhenTestingGildedRose
   {
     // __"Conjured"__ items degrade in `Quality` twice as fast as normal items
     // The `Quality` of an item is never negative
-    var newItem = AddItem("Conjured", 1, 5);
+    var newItem = AddItem("Conjured Mana Cake", 1, 5);
     Setup();
 
     GildedRose.UpdateQuality();
